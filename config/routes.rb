@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+devise_for :users #usersのdeviseのcontroller
+root to: "homes#top" #homesのcontroller
+resources :books, only: [:new, :create, :index, :show] #booksのcontroller
+resources :users, only: [:index, :show, :edit, :update] #usersのcontroller
+get  'homes/about', to: 'homes#about', as: 'about' #homesのcontrollerのaboutページへのルーティング
+
 end

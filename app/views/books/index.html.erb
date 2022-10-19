@@ -1,0 +1,22 @@
+<h1>Books</h1>
+  <!--↓アプリケーション２の１１章参照（３〜１３行目）-->
+  <% @books.each do |book| %>
+  <!--↓詳細画面へのリンクを追加(６〜８行目)-->
+  <div>
+    <%= link_to book_path(book.id) do %>
+      <%= image_tag book.get_image %>
+  <% end %>
+    <p><%= image_tag 'sample-author1.jpg' %></p>
+    <p>title：<%= book.title %></p>
+    <p>opinion：<%= book.body %></p>
+  </div>
+  <% end %>
+
+<h1>New Book</h1>
+  <%= form_with model: @book do |f| %>
+    <h4>title</h4>
+      <%= f.text_field :title %>
+    <h4>opinion</h4>
+      <%= f.text_area :body %>
+    <%= f.submit 'Creat Book' %>
+  <% end %>
