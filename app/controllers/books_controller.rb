@@ -7,16 +7,34 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id #current_userは、現在ログイン中のユーザーに関する情報を取得できる
     @book.save
-    redirect_to books_path
+    redirect_to book_path(@book.id)
   end
 
   def index
-    @book = Book.new
-    @books = Book.all
+    @book = Book.new #空のカラムを作成
+    @books = Book.all # データ（レコード）を全件取得
   end
 
   def show
-    @book = Book.find(params[:id])
+    @book_new = Book.new #空のカラムを作成
+    @books = Book.all # データ（レコード）を全件取得
+    @book = Book.find(params[:id]) # データ（レコード）を1件取得
+  end
+
+  def edit
+    @book = Book.find(params[:id]) # データ（レコード）を1件取得
+  end
+
+  def update
+    book = Book.find(params[:id])  # データ（レコード）を1件取得
+    book.update(book_params) # データ（レコード）を更新
+    redirect_to books_path(book.id)  # 詳細一覧画面へリダイレク
+  end
+
+  def destroy
+    book = Book.find(params[:id])  # データ（レコード）を1件取得
+    book.destroy  # データ（レコード）を削除
+    redirect_to books_path # 詳細一覧画面へリダイレクト
   end
 
    # 投稿データのストロングパラメータ

@@ -1,15 +1,13 @@
 class Book < ApplicationRecord
 
   has_one_attached :image #Bookモデルにimageを持たせる
-  belongs_to :user #BookモデルにUserモデルを関連付ける
+  belongs_to :user #BookモデルにUserモデルを関連付ける  ※1:Nの関係の「N」側
 
-  # ↓画像が設定されない場合はapp/assets/imagesに格納されているno_image.jpgという画像をデフォルト画像としてActiveStorageに格納し、格納した画像を表示する
-  def get_image
-    unless image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+  def get_profile_image(width, height) #条件式を定義 ※「def」=定義するという意味
+    unless profile_image.attached? #条件分岐文を定義(「unless」文は条件式が偽の場合の処理を記述するのに使われる) ※「if」の逆の意味
+      file_path = Rails.root.join('app/assets/images/sample-author1.jpg') #file_pathという箱にサンプル画像を入れている
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg') #条件式が偽の時に実行する処理1を記載
     end
-    image
+    profile_image.variant(resize_to_limit: [width, height]).processed
   end
-
 end
