@@ -1,13 +1,19 @@
-<h1>Editing Book</h1>
+<!--Editing Bookの部分-->
+<h2>Editing Book</h2>
 
 <%= form_with model: @book, url: book_path(@book.id), method: :patch do |f| %>
 
-  <h4>title</h4>
+  <h6>title</h6> <!--titleの部分-->
   <%= f.text_field :title %>
 
-  <h4>opinion</h4>
+  <h6>opinion</h6> <!--opinionの部分-->
   <%= f.text_area :body %>
 
-  <%= f.submit 'Update Book' %>
+  <%= f.submit 'Update Book' %> <!--Update Bookのボタン部分-->
 
+  <% if @book.user_id == current_user.id %>
+      <%= link_to "Show", book_path(@book.id) %> <!--Showのボタン部分-->
+      <%= link_to "Back", books_path %> <!--Backのボタン部分-->
+
+  <% end %>
 <% end %>

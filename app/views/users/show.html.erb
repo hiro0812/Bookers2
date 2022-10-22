@@ -1,29 +1,40 @@
-<!-- ユーザーの詳細 -->
-<h1>User info</h1>
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <% if @user == current_user.id %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
-</div>
+<!--User infoの部分-->
+<h2>User info</h2>
+  <div>
+    <%= image_tag current_user.get_profile_image(100, 100) %>
+  </div>
 
-<!-- ユーザーの投稿一覧 -->
-<h1>Books</h1>
-<% @books.each do |book| %>
-<div>
-  <%= link_to user_path(@user.id) do %>
-    <%= image_tag @user.get_profile_image(100,100) %>
-  <% end %>
-  <p><%= image_tag 'sample-author1.jpg' %></p>
-  <p>title：<%= book.title %></p>
-  <p>opinion：<%= book.body %></p>
-</div>
-<% end %>
+  <p>name</p>
+    <%= current_user.name %>
 
-<!--新規投稿-->
-<h1>New Book</h1>
-  <%= form_with model: @book do |f| %>
+  <p>introduction</p>
+    <%= current_user.introduction %>
+
+  <div class="edit-icons">
+    <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
+    <i class="fas fa-user-cog"></i>
+    <% end %>
+  </div>
+
+
+<!--Booksの部分-->
+<h2>Books</h2>
+  <%#<% @books.each do |book| %>
+    <div>
+      <p><%= link_to user_path(@book.id) do %>
+         <%= image_tag current_user.get_profile_image(100, 100) %>
+         <% end %></p>
+      <p>title : <%= link_to book_path(@book.id) do %>
+         <%= @book.title %>
+         <% end %>
+      </p>
+      <p>opinion：<%= @book.body %></p>
+    </div>
+  <%#<% end %>
+
+<!--New Bookの部分-->
+<h2>New Book</h2>
+  <%= form_with model: @book_new do |f| %>
     <h4>title</h4>
       <%= f.text_field :title %>
     <h4>opinion</h4>
