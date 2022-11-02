@@ -1,21 +1,5 @@
 <!--User infoの部分-->
-<h2>User info</h2>
-  <div>
-    <%= image_tag current_user.get_profile_image(100, 100) %>
-  </div>
-
-  <p>name</p>
-    <%= current_user.name %>
-
-  <p>introduction</p>
-    <%= current_user.introduction %>
-
-  <div class="edit-icons">
-    <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
-    <i class="fas fa-user-cog"></i>
-    <% end %>
-  </div>
-
+<%= render 'books/list' %>
 
 <!--Booksの部分-->
 <h2>Books</h2>
@@ -23,7 +7,9 @@
     <div>
       <p><%= link_to user_path(@book.id) do %>
          <%= image_tag current_user.get_profile_image(100, 100) %>
-         <% end %></p>
+         <% end %>
+      </p>
+
       <p>title : <%= link_to book_path(@book.id) do %>
          <%= @book.title %>
          <% end %>
@@ -34,7 +20,7 @@
 
 <!--New Bookの部分-->
 <h2>New Book</h2>
-  <%= form_with model: @book_new do |f| %>
+  <%= form_with model: @book do |f| %>
     <h4>title</h4>
       <%= f.text_field :title %>
     <h4>opinion</h4>

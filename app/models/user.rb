@@ -10,11 +10,15 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image #profile_imageという名前でActiveStorageでプロフィール画像を保存できるように設定した。
 
-  def get_profile_image(width, height) #条件式を定義 ※「def」=定義するという意味
-    unless profile_image.attached? #条件分岐文を定義(「unless」文は条件式が偽の場合の処理を記述するのに使われる) ※「if」の逆の意味
-      file_path = Rails.root.join('app/assets/images/sample-author1.jpg') #file_pathという箱にサンプル画像を入れている
-      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg') #条件式が偽の時に実行する処理1を記載
-    end
-    profile_image.variant(resize_to_limit: [width, height]).processed
+  validates :name, uniqueness: true, length: { minimum: 2, maximum: 20 } #一意性（ユニーク）を持たせる #length:nameの文字数は、2文字から20文字まで
+  validates :introduction, length: {maximum: 50 } #length:introductionの文字数は、最大50文字まで
+
+  def get_profile_image(width, height)
+  unless profile_image.attached?
+    file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
+    profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
   end
+  profile_image.variant(resize_to_limit: [width, height]).processed
+end
+
 end

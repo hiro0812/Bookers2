@@ -1,20 +1,5 @@
 <!--User infoの部分-->
-<h2>User info</h2>
-  <div>
-    <%= image_tag current_user.get_profile_image(100, 100) %>
-  </div>
-
-  <p>name</p>
-    <%= current_user.name %>
-
-  <p>introduction</p>
-    <%= current_user.introduction %>
-
-  <div class="edit-icons">
-    <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
-    <i class="fas fa-user-cog"></i>
-    <% end %>
-  </div>
+<%= render 'books/list' %>
 
 <!--Usersの部分-->
 <h2>Users</h2>
@@ -22,7 +7,7 @@
     <div>
       <p>image : <%= image_tag current_user.get_profile_image(100, 100) %></p>
       <p>name : <%= user.name %></p>
-      <p><%= link_to 'show', user_path(current_user)%></p>
+      <p><%= link_to 'show', user_path(current_user) %></p>
     </div>
   <% end %>
 

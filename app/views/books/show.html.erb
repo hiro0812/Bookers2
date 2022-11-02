@@ -1,45 +1,30 @@
 <!--User infoの部分-->
-<h2>User info</h2>
-  <div>
-    <%= image_tag current_user.get_profile_image(100, 100) %>
-  </div>
+<%= render 'list' %>
 
-  <p>name</p>
-    <%= current_user.name %>
-
-  <p>introduction</p>
-    <%= current_user.introduction %>
-
-  <div class="edit-icons">
-    <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
-    <i class="fas fa-user-cog"></i>
-    <% end %>
-  </div>
-
-  <!--Book datailの部分-->
+ <!--Book datailの部分-->
   <h2>Book datail</h2>
   <%#<% @books.each do |book| %>
   <div>
     <p><%= image_tag current_user.get_profile_image(100, 100) %></p>
-    <p><%= link_to user_path(@book.id) do %>
-       <%= @book.user.name %>
+    <p><%= link_to user_path(@book_find.id) do %>
+       <%= @book_find.user.name %>
        <% end %>
     </p>
-    <p>title : <%= link_to book_path(@book.id) do %>
-       <%= @book.title %>
+    <p>title : <%= link_to book_path(@book_find.id) do %>
+       <%= @book_find.title %>
        <% end %>
     </p>
-    <p>opinion：<%= @book.body %></p>
-    <% if @book.user_id == current_user.id %>
-      <%= link_to "edit", edit_book_path(@book.id) %>
-      <%= link_to "destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <p>opinion：<%= @book_find.body %></p>
+    <% if @book_find.user_id == current_user.id %>
+      <%= link_to "Edit", edit_book_path(@book_find.id) %>
+      <%= link_to "Destroy", book_path(@book_find.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
     <% end %>
   </div>
   <%#<% end %>
 
 <!--New Bookの部分-->
-<h1>New Book</h1>
-  <%= form_with model: @book_new do |f| %>
+<h2>New Book</h2>
+  <%= form_with model: @book do |f| %>
     <h4>title</h4>
       <%= f.text_field :title %>
     <h4>opinion</h4>

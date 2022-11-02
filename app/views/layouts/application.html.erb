@@ -1,36 +1,99 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bookers2</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Bookers</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "Home", user_path(current_user.id) %>
-        </li>
-          <%= link_to "User", user_path(current_user.id) %>
-        <li>
-          <%= link_to "Book", user_path(current_user.id) %>
-        </li>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "Sign_up", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "Log in", new_user_session_path %>
-        </li>
-      <% end %>
+  <body class="d-flex flex-column vh-100">
+    <!--headerのコード-->
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <%= link_to "Bookers", root_path, class: "navbar-brand" %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+          <!--signed_in出来たら下記の処理をする-->
+          <% if user_signed_in? %>
+            <!--Homeのコード-->
+            <li class="nav-item">
+              <%= link_to root_path, class: 'nav-link text-white' do %>
+              <i class="fa-solid fa-house-chimney"></i>Home
+              <% end %>
+            </li>
+            <!--Usersのコード-->
+            <li class="nav-item">
+              <%= link_to users_path, class: 'nav-link text-white' do %>
+              <i class="fa-solid fa-users"></i>Users
+              <% end %>
+            </li>
+            <!--Booksのコード-->
+            <li class="nav-item">
+              <%= link_to books_path, class: 'nav-link text-white' do %>
+              <i class="fa-solid fa-book-open"></i>Books
+              <% end %>
+            </li>
+            <!--Log outのコード-->
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-white' do %>
+              <i class="fa-solid fa-right-to-bracket"></i>Log out
+              <% end %>
+            </li>
+          <!--signed_in出来なければ下記️の処理をする-->
+          <% else %>
+            <!--Homeのコード-->
+            <li class="nav-item">
+              <%= link_to root_path, class: 'nav-link text-white' do %>
+              <i class="fa-solid fa-house-chimney"></i>Home
+              <% end %>
+            </li>
+            <!--Aboutのコード-->
+            <li class="nav-item">
+              <%= link_to about_path, class: 'nav-link text-white' do %>
+              <i class="fa-solid fa-link"></i>About
+              <% end %>
+            </li>
+            <!--Sign upのコード-->
+            <li class="nav-item">
+              <%= link_to new_user_registration_path, class: 'nav-link text-white' do %>
+              <i class="fa-solid fa-user-plus"></i>Sign up
+              <% end %>
+            </li>
+            <!--Log inのコード-->
+            <li class="nav-item">
+              <%= link_to new_user_session_path, class: 'nav-link text-white' do %>
+              <i class="fa-solid fa-right-to-bracket"></i>Log in
+              <% end %>
+            </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
+    <!--mainのコード-->
+    <main>
     <%= yield %>
+    </main>
+    <!--footerのコード-->
+    <footer class="bg-white text-dark pt-5 pb-4">
+      <div class="container mt-5">
+  	    <div class="row">
+    	    <div class="mx-auto">
+    		    <p>CopyRight Infratop.inc</p>
+    	    </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
