@@ -1,33 +1,47 @@
-<!--User infoの部分-->
-<%= render 'list' %>
+<!--apprication.html.erbでheader部分とfooter部分のコードは記述済のため、<main>タグのコードのみ記述すれば良い--
+<!--main部分-->
+<div class="container">
+  <div class="row">
 
- <!--Book datailの部分-->
-  <h2>Book datail</h2>
-  <%#<% @books.each do |book| %>
-  <div>
-    <p><%= image_tag current_user.get_profile_image(100, 100) %></p>
-    <p><%= link_to user_path(@book_find.id) do %>
-       <%= @book_find.user.name %>
-       <% end %>
-    </p>
-    <p>title : <%= link_to book_path(@book_find.id) do %>
-       <%= @book_find.title %>
-       <% end %>
-    </p>
-    <p>opinion：<%= @book_find.body %></p>
-    <% if @book_find.user_id == current_user.id %>
-      <%= link_to "Edit", edit_book_path(@book_find.id) %>
-      <%= link_to "Destroy", book_path(@book_find.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-    <% end %>
+    <!--User infoとNew Bookの部分(部分テンプレート済み)-->
+    <div class="col-md-3">
+      <%= render 'list' %>
+    </div>
+
+    <!--Book datailの部分-->
+    <div class="col-md-8 offset-md-1">
+      <h2>Book datail</h2>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>
+                <%= image_tag current_user.get_profile_image(100, 100) %>
+              <br>
+                <%= link_to user_path(@book_find.id) do %>
+                  <%= @book_find.user.name %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to book_path(@book_find.id) do %>
+                <%= @book_find.title %>
+                <% end %>
+              </td>
+              <td>
+                <%= @book_find.body %>
+              </td>
+              <td>
+                <% if @book_find.user_id == current_user.id %>
+                  <%= link_to "Edit", edit_book_path(@book_find.id), class: "btn btn-sm btn-success" %>
+                <% end %>
+              </td>
+              <td>
+                <% if @book_find.user_id == current_user.id %>
+                  <%= link_to "Destroy", book_path(@book_find.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
   </div>
-  <%#<% end %>
-
-<!--New Bookの部分-->
-<h2>New Book</h2>
-  <%= form_with model: @book do |f| %>
-    <h4>title</h4>
-      <%= f.text_field :title %>
-    <h4>opinion</h4>
-      <%= f.text_area :body %>
-    <%= f.submit 'Creat Book' %>
-  <% end %>
+</div>

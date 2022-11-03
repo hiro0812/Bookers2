@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :name, uniqueness: true, length: { minimum: 2, maximum: 20 } #一意性（ユニーク）を持たせる #length:nameの文字数は、2文字から20文字まで
   validates :introduction, length: {maximum: 50 } #length:introductionの文字数は、最大50文字まで
 
-  def get_profile_image(width, height)
+def get_profile_image(width, height)
   unless profile_image.attached?
     file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
     profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')

@@ -1,30 +1,42 @@
-<!--User infoの部分-->
-<%= render 'books/list' %>
+<!--apprication.html.erbでheader部分とfooter部分のコードは記述済のため、<main>タグのコードのみ記述すれば良い--
+<!--main部分-->
+<div class="container" px-5 px-sm-0>
+  <div class="row">
 
-<!--Booksの部分-->
-<h2>Books</h2>
-  <%#<% @books.each do |book| %>
-    <div>
-      <p><%= link_to user_path(@book.id) do %>
-         <%= image_tag current_user.get_profile_image(100, 100) %>
-         <% end %>
-      </p>
-
-      <p>title : <%= link_to book_path(@book.id) do %>
-         <%= @book.title %>
-         <% end %>
-      </p>
-      <p>opinion：<%= @book.body %></p>
+  <!--User infoとNew Bookの部分(部分テンプレート済み)-->
+    <div class="col-md-3">
+      <%= render 'books/list' %>
     </div>
-  <%#<% end %>
 
-<!--New Bookの部分-->
-<h2>New Book</h2>
-  <%= form_with model: @book do |f| %>
-    <h4>title</h4>
-      <%= f.text_field :title %>
-    <h4>opinion</h4>
-      <%= f.text_area :body %>
-    <%= f.submit 'Creat Book' %>
-  <% end %>
+      <!--Booksの部分-->
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @books.each do |book| %>
+            <tr>
+              <td><%= link_to user_path(@user.id) do %>
+                  <%= image_tag @user.get_profile_image(100, 100) %>
+                  <% end %>
+              </td>
+              <td><%= link_to book_path(@book_find.id) do %>
+                  <%= @book_find.title %>
+                  <% end %>
+              </td>
+              <td><%= @book_find.body %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
 

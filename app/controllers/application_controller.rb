@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, except: [:top, :about] #ログインしていないユーザーは（Top,Aboutページ）しか入ることが出来ません。という意味
 
     def after_sign_in_path_for(resource)
-      users_path #ログイン後の遷移先を指定
+      user_path(current_user) #ログイン後の遷移先を指定(users#show(current_user))
     end
 
     def after_sign_out_path_for(resource)
-      root_path #ログアウト後の推移先を指定
+      root_path #ログアウト後の推移先を指定()
     end
 
     protected
