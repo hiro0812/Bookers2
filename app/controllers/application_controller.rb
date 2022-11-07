@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!, except: [:top, :about] #ログインしていないユーザーは（Top,Aboutページ）しか入ることが出来ません。という意味
-
+  
     def after_sign_in_path_for(resource)
       user_path(current_user) #ログイン後の遷移先を指定(users#show(current_user))
     end

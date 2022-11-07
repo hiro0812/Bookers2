@@ -5,7 +5,7 @@
 
   <!--User infoとNew Bookの部分(部分テンプレート済み)-->
     <div class="col-md-3">
-      <%= render 'books/list' %>
+      <%= render 'books/list', user: @user ,book: @book %>
     </div>
 
       <!--Booksの部分-->
@@ -27,11 +27,11 @@
                   <%= image_tag @user.get_profile_image(100, 100) %>
                   <% end %>
               </td>
-              <td><%= link_to book_path(@book_find.id) do %>
-                  <%= @book_find.title %>
+              <td><%= link_to book_path(book.id) do %>
+                  <%= book.title %>
                   <% end %>
               </td>
-              <td><%= @book_find.body %></td>
+              <td><%= book.body %></td>
             </tr>
             <% end %>
           </tbody>

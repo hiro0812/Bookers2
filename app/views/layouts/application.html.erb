@@ -27,26 +27,26 @@
           <% if user_signed_in? %>
             <!--Homeのコード-->
             <li class="nav-item">
-              <%= link_to root_path, class: 'nav-link text-white' do %>
-              <i class="fa-solid fa-house-chimney"></i>Home
+              <%= link_to user_path(current_user), class: 'nav-link text-white' do %>
+              <i class="fas fa-home"></i> Home
               <% end %>
             </li>
             <!--Usersのコード-->
             <li class="nav-item">
               <%= link_to users_path, class: 'nav-link text-white' do %>
-              <i class="fa-solid fa-users"></i>Users
+              <i class="fas fa-users"></i> Users
               <% end %>
             </li>
             <!--Booksのコード-->
             <li class="nav-item">
               <%= link_to books_path, class: 'nav-link text-white' do %>
-              <i class="fa-solid fa-book-open"></i>Books
+              <i class="fas fa-book-open"></i> Books
               <% end %>
             </li>
             <!--Log outのコード-->
             <li class="nav-item">
               <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-white' do %>
-              <i class="fa-solid fa-right-to-bracket"></i>Log out
+              <i class="fas fa-sign-out-alt"></i> Log out
               <% end %>
             </li>
           <!--signed_in出来なければ下記️の処理をする-->
@@ -54,29 +54,29 @@
             <!--Homeのコード-->
             <li class="nav-item">
               <%= link_to root_path, class: 'nav-link text-white' do %>
-              <i class="fa-solid fa-house-chimney"></i>Home
+              <i class="fas fa-home"></i> Home
               <% end %>
             </li>
             <!--Aboutのコード-->
             <li class="nav-item">
               <%= link_to about_path, class: 'nav-link text-white' do %>
-              <i class="fa-solid fa-link"></i>About
+              <i class="fas fa-link"></i> About
               <% end %>
             </li>
             <!--Sign upのコード-->
             <li class="nav-item">
               <%= link_to new_user_registration_path, class: 'nav-link text-white' do %>
-              <i class="fa-solid fa-user-plus"></i>Sign up
+              <i class="fas fa-user-plus"></i> Sign up
               <% end %>
             </li>
             <!--Log inのコード-->
             <li class="nav-item">
               <%= link_to new_user_session_path, class: 'nav-link text-white' do %>
-              <i class="fa-solid fa-right-to-bracket"></i>Log in
+              <i class="fas fa-sign-in-alt"></i> Log in
               <% end %>
             </li>
-            <% end %>
-            </ul>
+          <% end %>
+          </ul>
           </div>
         </div>
       </nav>
