@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     end
   end
 
-  private
+  private #privateは記述をしたコントローラ内でしか参照できない（※protectedは呼び出された他のコントローラからも参照することができる）
 
   def user_params
     params.require(:user).permit(:name, :profile_image ,:introduction) #ストロングパラメーター
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])  # データ（レコード）を1件取得
-    # @user = user.books #　投稿者のデータから投稿者の全ての本のデータの取得
+    # @user = user.books # 投稿者のデータから投稿者の全ての本のデータの取得
     unless @user == current_user
      redirect_to user_path(current_user)
     end

@@ -12,10 +12,11 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
+
     <!--headerのコード-->
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
+        <div class="container"> <!--Bootstrap：グリッドシステムの.container-->
           <%= link_to "Bookers", root_path, class: "navbar-brand" %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,56 +24,58 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
-          <!--signed_in出来たら下記の処理をする-->
-          <% if user_signed_in? %>
+
+　　　　　<!--if user_signed_in?=devise 側で用意しているヘルパーメソッドのこと-->
+          <% if user_signed_in? %> <!--devise の機能を使ってログインしているか、ログインしていないかを判断し、どちらかによってブラウザに表示する内容を変更するコード-->
+          <!--ログイン済みの場合、「if user_signed_in?」から「else」間のコードが表示される。-->
             <!--Homeのコード-->
-            <li class="nav-item">
-              <%= link_to user_path(current_user), class: 'nav-link text-white' do %>
-              <i class="fas fa-home"></i> Home
+            <li class="nav-item"> <!--Homeのコード-->
+              <%= link_to user_path(current_user), class: 'nav-link text-white' do %> <!--link_to=リンク先を作るメソッド, class部分はBootstrapを使用=--> <!--link_to(ruby)= a タグ(html)-->
+              <i class="fas fa-home"></i> Home <!--Homeのアイコン（Font Awesomeからコピペ）-->
               <% end %>
             </li>
             <!--Usersのコード-->
             <li class="nav-item">
-              <%= link_to users_path, class: 'nav-link text-white' do %>
-              <i class="fas fa-users"></i> Users
+              <%= link_to users_path, class: 'nav-link text-white' do %> <!--link_to=リンク先を作るメソッド, class部分はBootstrapを使用=--> <!--link_to(ruby)= a タグ(html)-->
+              <i class="fas fa-users"></i> Users <!--Userのアイコン（Font Awesomeからコピペ）-->
               <% end %>
             </li>
             <!--Booksのコード-->
             <li class="nav-item">
-              <%= link_to books_path, class: 'nav-link text-white' do %>
-              <i class="fas fa-book-open"></i> Books
+              <%= link_to books_path, class: 'nav-link text-white' do %> <!--link_to=リンク先を作るメソッド, class部分はBootstrapを使用=--> <!--link_to(ruby)= a タグ(html)-->
+              <i class="fas fa-book-open"></i> Books <!--Booksのアイコン（Font Awesomeからコピペ）-->
               <% end %>
             </li>
             <!--Log outのコード-->
             <li class="nav-item">
-              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-white' do %>
-              <i class="fas fa-sign-out-alt"></i> Log out
+              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-white' do %> <!--link_to=リンク先を作るメソッド, class部分はBootstrapを使用=--> <!--link_to(ruby)= a タグ(html)-->
+              <i class="fas fa-sign-out-alt"></i> Log out <!--Log outのアイコン（Font Awesomeからコピペ）-->
               <% end %>
             </li>
-          <!--signed_in出来なければ下記️の処理をする-->
           <% else %>
+          <!--ログインしていない場合、「else」から「end」間のコードが表示される-->
             <!--Homeのコード-->
             <li class="nav-item">
-              <%= link_to root_path, class: 'nav-link text-white' do %>
-              <i class="fas fa-home"></i> Home
+              <%= link_to root_path, class: 'nav-link text-white' do %> <!--link_to=リンク先を作るメソッド, class部分はBootstrapを使用=--> <!--link_to(ruby)= a タグ(html)-->
+              <i class="fas fa-home"></i> Home <!--Homeのアイコン（Font Awesomeからコピペ）--
               <% end %>
             </li>
             <!--Aboutのコード-->
             <li class="nav-item">
-              <%= link_to about_path, class: 'nav-link text-white' do %>
-              <i class="fas fa-link"></i> About
+              <%= link_to about_path, class: 'nav-link text-white' do %> <!--link_to=リンク先を作るメソッド, class部分はBootstrapを使用=--> <!--link_to(ruby)= a タグ(html)-->
+              <i class="fas fa-link"></i> About <!--Aboutのアイコン（Font Awesomeからコピペ）--
               <% end %>
             </li>
             <!--Sign upのコード-->
             <li class="nav-item">
-              <%= link_to new_user_registration_path, class: 'nav-link text-white' do %>
-              <i class="fas fa-user-plus"></i> Sign up
+              <%= link_to new_user_registration_path, class: 'nav-link text-white' do %> <!--link_to=リンク先を作るメソッド, class部分はBootstrapを使用=--> <!--link_to(ruby)= a タグ(html)-->
+              <i class="fas fa-user-plus"></i> Sign up <!--Sign upのアイコン（Font Awesomeからコピペ）--
               <% end %>
             </li>
             <!--Log inのコード-->
             <li class="nav-item">
-              <%= link_to new_user_session_path, class: 'nav-link text-white' do %>
-              <i class="fas fa-sign-in-alt"></i> Log in
+              <%= link_to new_user_session_path, class: 'nav-link text-white' do %> <!--link_to=リンク先を作るメソッド, class部分はBootstrapを使用=--> <!--link_to(ruby)= a タグ(html)-->
+              <i class="fas fa-sign-in-alt"></i> Log in <!--Log inのアイコン（Font Awesomeからコピペ）-->
               <% end %>
             </li>
           <% end %>
@@ -81,20 +84,23 @@
         </div>
       </nav>
     </header>
+
     <!--mainのコード-->
     <main>
-      <%= render 'layouts/notification' %>
-      <%= yield %>
+      <%= render 'layouts/notification' %> <!--renderアクションの-->
+      <%= yield %> <!--yield=-->
     </main>
+
     <!--footerのコード-->
     <footer class="bg-white text-dark pt-5 pb-4">
-      <div class="container mt-5">
-  	    <div class="row">
-    	    <div class="mx-auto">
+      <div class="container mt-5"> <!--Bootstrap：グリッドシステムの.container-->
+  	    <div class="row"> <!--Bootstrap：グリッドシステムの.row-->
+    	    <div class="mx-auto"> <!--Bootstrap：グリッドシステムの.col-->
     		    <p>CopyRight Infratop.inc</p>
     	    </div>
         </div>
       </div>
     </footer>
+
   </body>
 </html>

@@ -3,12 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         #:database_authenticatable（パスワードの正確性を検証）#:registerable（ユーザ登録や編集、削除）#:recoverable（パスワードをリセット）
-         #:rememberable（ログイン情報を保存） #:validatable（email のフォーマットなどのバリデーション）
+  # 作成した User モデルに devise で使用する機能を記述
+  # :database_authenticatable（パスワードの正確性を検証）# :registerable（ユーザ登録や編集、削除）# :recoverable（パスワードをリセット）
+  # :rememberable（ログイン情報を保存） # :validatable（email のフォーマットなどのバリデーション）
 
   has_many :books, dependent: :destroy #UserモデルにBookモデルを関連付ける ※1:Nの関係の「1」側
 
-  has_one_attached :profile_image #profile_imageという名前でActiveStorageでプロフィール画像を保存できるように設定した。
+  has_one_attached :profile_image # profile_imageという名前でUserモデルにActiveStorageでプロフィール画像を保存できるように設定した。
 
   validates :name, uniqueness: true, length: { minimum: 2, maximum: 20 } #一意性（ユニーク）を持たせる #length:nameの文字数は、2文字から20文字まで
   validates :introduction, length: {maximum: 50 } #length:introductionの文字数は、最大50文字まで

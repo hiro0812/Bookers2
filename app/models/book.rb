@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
 
-  has_one_attached :image #Bookモデルにimageを持たせる
+  has_one_attached :image # imageという名前でBookモデルにActiveStorageでプロフィール画像を保存できるように設定した。
+
   belongs_to :user #BookモデルにUserモデルを関連付ける  ※1:Nの関係の「N」側
 
   validates :title, presence: true #新規投稿したbookのtitleが存在しているかを確認するバリデーション #presence:空でないこと

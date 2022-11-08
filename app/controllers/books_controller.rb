@@ -55,10 +55,9 @@ class BooksController < ApplicationController
     redirect_to books_path # 詳細一覧画面へリダイレクト
   end
 
-   # 投稿データのストロングパラメータ
-  private
+  private # privateは記述をしたコントローラ内でしか参照できない（※protectedは呼び出された他のコントローラからも参照することができる）
 
-  def book_params
+  def book_params # 投稿データのストロングパラメータ
     params.require(:book).permit(:title, :body)
   end
 

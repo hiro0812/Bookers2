@@ -1,20 +1,28 @@
+<!--devise をインストールして、deviseのモデルを作成しただけで、以下の最低限の認証機能が完成している。
+  ・必要なカラムが用意されている（）
+  ・ルーティングが自動で追加されている（）
+  ・devise が持っている、基本的な View を表示させる（）-->
+
+<!--Sign upの画面の記述-->
 <h2>Sign up</h2>
 
-<%= form_with model: @user, url: user_registration_path do |f| %>
+<%= form_with model: @user, url: user_registration_path do |f| %>  <!--ビューファイル | データベースに保存する場合のform_withの書き方 = 「% form_with model: モデルクラスのインスタンス do |form| %」-->
 
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render "devise/shared/error_messages", resource: resource %>  <!--deviseのエラーメッセージのコード-->
 
+  <!--nameのフォーム ※自分で追記したもの-->
   <div class="field">
   <%= f.label :name %><br>
   <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
   </div>
 
-
+  <!--emailのフォーム ※自動で追記されている-->
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autocomplete: "email" %>
   </div>
 
+  <!--new-passwordのフォーム ※自動で追記されている-->
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
@@ -23,14 +31,17 @@
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
+  <!--new-passwordのフォーム ※自動で追記されている-->
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+ <!--Sign upのボタン ※自動で追記されている-->
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
+<!---->
 <%= render "devise/shared/links" %>
